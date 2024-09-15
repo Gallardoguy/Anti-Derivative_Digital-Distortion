@@ -1,0 +1,382 @@
+ARM GAS  C:\Users\galla\AppData\Local\Temp\ccw1b4Uc.s 			page 1
+
+
+   1              		.cpu cortex-m7
+   2              		.eabi_attribute 28, 1
+   3              		.eabi_attribute 20, 1
+   4              		.eabi_attribute 21, 1
+   5              		.eabi_attribute 23, 3
+   6              		.eabi_attribute 24, 1
+   7              		.eabi_attribute 25, 1
+   8              		.eabi_attribute 26, 1
+   9              		.eabi_attribute 30, 2
+  10              		.eabi_attribute 34, 1
+  11              		.eabi_attribute 18, 4
+  12              		.file	"BMlow.cpp"
+  13              		.text
+  14              	.Ltext0:
+  15              		.cfi_sections	.debug_frame
+  16              		.section	.text._ZN5BMlow4InitEv,"ax",%progbits
+  17              		.align	1
+  18              		.p2align 2,,3
+  19              		.global	_ZN5BMlow4InitEv
+  20              		.arch armv7e-m
+  21              		.syntax unified
+  22              		.thumb
+  23              		.thumb_func
+  24              		.fpu fpv5-d16
+  26              	_ZN5BMlow4InitEv:
+  27              	.LVL0:
+  28              	.LFB544:
+  29              		.file 1 "BMlow.cpp"
+   1:BMlow.cpp     **** #include "BMlow.h"
+   2:BMlow.cpp     **** 
+   3:BMlow.cpp     **** 
+   4:BMlow.cpp     **** void BMlow::Init(){
+  30              		.loc 1 4 19 view -0
+  31              		.cfi_startproc
+  32              		@ args = 0, pretend = 0, frame = 0
+  33              		@ frame_needed = 0, uses_anonymous_args = 0
+  34              		@ link register save eliminated.
+   5:BMlow.cpp     ****     for (int i = 0; i < MWSPT_NSEC; ++i) {
+  35              		.loc 1 5 5 view .LVU1
+  36              	.LBB2:
+  37              		.loc 1 5 23 view .LVU2
+  38              	.LBB3:
+   6:BMlow.cpp     ****             for (int j = 0; j < 2; ++j) {
+  39              		.loc 1 6 31 view .LVU3
+   7:BMlow.cpp     ****                 input_buffer[i][j] = 0.0;
+  40              		.loc 1 7 17 view .LVU4
+  41              		.loc 1 7 36 is_stmt 0 view .LVU5
+  42 0000 0023     		movs	r3, #0
+  43 0002 8364     		str	r3, [r0, #72]	@ float
+   8:BMlow.cpp     ****                 output_buffer[i][j] = 0.0;
+  44              		.loc 1 8 17 is_stmt 1 view .LVU6
+  45              		.loc 1 8 37 is_stmt 0 view .LVU7
+  46 0004 0366     		str	r3, [r0, #96]	@ float
+   6:BMlow.cpp     ****             for (int j = 0; j < 2; ++j) {
+  47              		.loc 1 6 13 is_stmt 1 view .LVU8
+  48              	.LVL1:
+   6:BMlow.cpp     ****             for (int j = 0; j < 2; ++j) {
+ARM GAS  C:\Users\galla\AppData\Local\Temp\ccw1b4Uc.s 			page 2
+
+
+  49              		.loc 1 6 31 view .LVU9
+   7:BMlow.cpp     ****                 input_buffer[i][j] = 0.0;
+  50              		.loc 1 7 17 view .LVU10
+   7:BMlow.cpp     ****                 input_buffer[i][j] = 0.0;
+  51              		.loc 1 7 36 is_stmt 0 view .LVU11
+  52 0006 C364     		str	r3, [r0, #76]	@ float
+  53              		.loc 1 8 17 is_stmt 1 view .LVU12
+  54              		.loc 1 8 37 is_stmt 0 view .LVU13
+  55 0008 4366     		str	r3, [r0, #100]	@ float
+   6:BMlow.cpp     ****             for (int j = 0; j < 2; ++j) {
+  56              		.loc 1 6 13 is_stmt 1 view .LVU14
+  57              	.LVL2:
+   6:BMlow.cpp     ****             for (int j = 0; j < 2; ++j) {
+  58              		.loc 1 6 31 view .LVU15
+  59              	.LBE3:
+   5:BMlow.cpp     ****             for (int j = 0; j < 2; ++j) {
+  60              		.loc 1 5 5 view .LVU16
+   5:BMlow.cpp     ****             for (int j = 0; j < 2; ++j) {
+  61              		.loc 1 5 23 view .LVU17
+  62              	.LBB4:
+   6:BMlow.cpp     ****                 input_buffer[i][j] = 0.0;
+  63              		.loc 1 6 31 view .LVU18
+   7:BMlow.cpp     ****                 output_buffer[i][j] = 0.0;
+  64              		.loc 1 7 17 view .LVU19
+   7:BMlow.cpp     ****                 output_buffer[i][j] = 0.0;
+  65              		.loc 1 7 36 is_stmt 0 view .LVU20
+  66 000a 0365     		str	r3, [r0, #80]	@ float
+  67              		.loc 1 8 17 is_stmt 1 view .LVU21
+  68              		.loc 1 8 37 is_stmt 0 view .LVU22
+  69 000c 8366     		str	r3, [r0, #104]	@ float
+   6:BMlow.cpp     ****                 input_buffer[i][j] = 0.0;
+  70              		.loc 1 6 13 is_stmt 1 view .LVU23
+  71              	.LVL3:
+   6:BMlow.cpp     ****                 input_buffer[i][j] = 0.0;
+  72              		.loc 1 6 31 view .LVU24
+   7:BMlow.cpp     ****                 output_buffer[i][j] = 0.0;
+  73              		.loc 1 7 17 view .LVU25
+   7:BMlow.cpp     ****                 output_buffer[i][j] = 0.0;
+  74              		.loc 1 7 36 is_stmt 0 view .LVU26
+  75 000e 4365     		str	r3, [r0, #84]	@ float
+  76              		.loc 1 8 17 is_stmt 1 view .LVU27
+  77              		.loc 1 8 37 is_stmt 0 view .LVU28
+  78 0010 C366     		str	r3, [r0, #108]	@ float
+   6:BMlow.cpp     ****                 input_buffer[i][j] = 0.0;
+  79              		.loc 1 6 13 is_stmt 1 view .LVU29
+  80              	.LVL4:
+   6:BMlow.cpp     ****                 input_buffer[i][j] = 0.0;
+  81              		.loc 1 6 31 view .LVU30
+  82              	.LBE4:
+   5:BMlow.cpp     ****             for (int j = 0; j < 2; ++j) {
+  83              		.loc 1 5 5 view .LVU31
+   5:BMlow.cpp     ****             for (int j = 0; j < 2; ++j) {
+  84              		.loc 1 5 23 view .LVU32
+  85              	.LBB5:
+   6:BMlow.cpp     ****                 input_buffer[i][j] = 0.0;
+  86              		.loc 1 6 31 view .LVU33
+   7:BMlow.cpp     ****                 output_buffer[i][j] = 0.0;
+ARM GAS  C:\Users\galla\AppData\Local\Temp\ccw1b4Uc.s 			page 3
+
+
+  87              		.loc 1 7 17 view .LVU34
+   7:BMlow.cpp     ****                 output_buffer[i][j] = 0.0;
+  88              		.loc 1 7 36 is_stmt 0 view .LVU35
+  89 0012 8365     		str	r3, [r0, #88]	@ float
+  90              		.loc 1 8 17 is_stmt 1 view .LVU36
+  91              		.loc 1 8 37 is_stmt 0 view .LVU37
+  92 0014 0367     		str	r3, [r0, #112]	@ float
+   6:BMlow.cpp     ****                 input_buffer[i][j] = 0.0;
+  93              		.loc 1 6 13 is_stmt 1 view .LVU38
+  94              	.LVL5:
+   6:BMlow.cpp     ****                 input_buffer[i][j] = 0.0;
+  95              		.loc 1 6 31 view .LVU39
+   7:BMlow.cpp     ****                 output_buffer[i][j] = 0.0;
+  96              		.loc 1 7 17 view .LVU40
+   7:BMlow.cpp     ****                 output_buffer[i][j] = 0.0;
+  97              		.loc 1 7 36 is_stmt 0 view .LVU41
+  98 0016 C365     		str	r3, [r0, #92]	@ float
+  99              		.loc 1 8 17 is_stmt 1 view .LVU42
+ 100              		.loc 1 8 37 is_stmt 0 view .LVU43
+ 101 0018 4367     		str	r3, [r0, #116]	@ float
+   6:BMlow.cpp     ****                 input_buffer[i][j] = 0.0;
+ 102              		.loc 1 6 13 is_stmt 1 view .LVU44
+ 103              	.LVL6:
+   6:BMlow.cpp     ****                 input_buffer[i][j] = 0.0;
+ 104              		.loc 1 6 31 view .LVU45
+ 105              	.LBE5:
+   5:BMlow.cpp     ****             for (int j = 0; j < 2; ++j) {
+ 106              		.loc 1 5 5 view .LVU46
+   5:BMlow.cpp     ****             for (int j = 0; j < 2; ++j) {
+ 107              		.loc 1 5 23 view .LVU47
+ 108              	.LBE2:
+   9:BMlow.cpp     ****             }
+  10:BMlow.cpp     ****         }
+  11:BMlow.cpp     **** }
+ 109              		.loc 1 11 1 is_stmt 0 view .LVU48
+ 110 001a 7047     		bx	lr
+ 111              		.cfi_endproc
+ 112              	.LFE544:
+ 114              		.section	.text._ZN5BMlow7ProcessEf,"ax",%progbits
+ 115              		.align	1
+ 116              		.p2align 2,,3
+ 117              		.global	_ZN5BMlow7ProcessEf
+ 118              		.syntax unified
+ 119              		.thumb
+ 120              		.thumb_func
+ 121              		.fpu fpv5-d16
+ 123              	_ZN5BMlow7ProcessEf:
+ 124              	.LVL7:
+ 125              	.LFB545:
+  12:BMlow.cpp     **** 
+  13:BMlow.cpp     **** float BMlow::Process(float in){
+ 126              		.loc 1 13 31 is_stmt 1 view -0
+ 127              		.cfi_startproc
+ 128              		@ args = 0, pretend = 0, frame = 0
+ 129              		@ frame_needed = 0, uses_anonymous_args = 0
+ 130              		@ link register save eliminated.
+  14:BMlow.cpp     ****     float output = in;
+ARM GAS  C:\Users\galla\AppData\Local\Temp\ccw1b4Uc.s 			page 4
+
+
+ 131              		.loc 1 14 5 view .LVU50
+  13:BMlow.cpp     ****     float output = in;
+ 132              		.loc 1 13 31 is_stmt 0 view .LVU51
+ 133 0000 F0EE407A 		vmov.f32	s15, s0
+ 134              	.LVL8:
+  15:BMlow.cpp     **** 
+  16:BMlow.cpp     ****         for (int i = 0; i < MWSPT_NSEC; ++i) {
+ 135              		.loc 1 16 9 is_stmt 1 view .LVU52
+ 136              	.LBB6:
+ 137              		.loc 1 16 27 view .LVU53
+ 138 0004 00F11803 		add	r3, r0, #24
+ 139              	.LVL9:
+ 140              	.L4:
+ 141              	.LBB7:
+ 142              	.LBB8:
+  17:BMlow.cpp     ****             // Shift the old values in buffers
+  18:BMlow.cpp     ****             for (int j = 1; j > 0; --j) {
+ 143              		.loc 1 18 31 view .LVU54
+  19:BMlow.cpp     ****                 input_buffer[i][j] = input_buffer[i][j - 1];
+ 144              		.loc 1 19 17 view .LVU55
+ 145              	.LBE8:
+ 146              	.LBB9:
+  20:BMlow.cpp     ****                 output_buffer[i][j] = output_buffer[i][j - 1];
+  21:BMlow.cpp     ****             }
+  22:BMlow.cpp     **** 
+  23:BMlow.cpp     ****             // Store the new input
+  24:BMlow.cpp     ****             input_buffer[i][0] = output;
+  25:BMlow.cpp     **** 
+  26:BMlow.cpp     ****             // Compute the new output for the current section
+  27:BMlow.cpp     ****             float temp_output = 0.0;
+  28:BMlow.cpp     ****             for (int j = 0; j < 2; ++j) {
+  29:BMlow.cpp     ****                 temp_output += NUM[i][j] * input_buffer[i][j];
+ 147              		.loc 1 29 29 is_stmt 0 view .LVU56
+ 148 0008 90ED037A 		vldr.32	s14, [r0, #12]
+ 149              	.LBE9:
+ 150              	.LBE7:
+  16:BMlow.cpp     ****             // Shift the old values in buffers
+ 151              		.loc 1 16 27 view .LVU57
+ 152 000c 0830     		adds	r0, r0, #8
+ 153              	.LBB19:
+ 154              	.LBB10:
+ 155              		.loc 1 29 29 view .LVU58
+ 156 000e 9FED0F0A 		vldr.32	s0, .L6
+ 157              	.LVL10:
+ 158              		.loc 1 29 29 view .LVU59
+ 159              	.LBE10:
+ 160              	.LBB11:
+  19:BMlow.cpp     ****                 input_buffer[i][j] = input_buffer[i][j - 1];
+ 161              		.loc 1 19 59 view .LVU60
+ 162 0012 D0ED106A 		vldr.32	s13, [r0, #64]
+ 163              	.LBE11:
+ 164              	.LBB12:
+ 165              		.loc 1 29 29 view .LVU61
+ 166 0016 A7EE870A 		vfma.f32	s0, s15, s14
+ 167 001a D0ED025A 		vldr.32	s11, [r0, #8]
+ 168              	.LBE12:
+ 169              	.LBB13:
+ARM GAS  C:\Users\galla\AppData\Local\Temp\ccw1b4Uc.s 			page 5
+
+
+  20:BMlow.cpp     ****                 output_buffer[i][j] = output_buffer[i][j - 1];
+ 170              		.loc 1 20 61 view .LVU62
+ 171 001e 90ED167A 		vldr.32	s14, [r0, #88]
+ 172              	.LBE13:
+ 173              	.LBB14:
+  30:BMlow.cpp     ****                 if (j > 0) {
+  31:BMlow.cpp     ****                     temp_output -= DEN[i][j] * output_buffer[i][j];
+ 174              		.loc 1 31 33 view .LVU63
+ 175 0022 90ED0B6A 		vldr.32	s12, [r0, #44]
+ 176              	.LBE14:
+  24:BMlow.cpp     **** 
+ 177              		.loc 1 24 32 view .LVU64
+ 178 0026 C0ED107A 		vstr.32	s15, [r0, #64]
+ 179              	.LBB15:
+  19:BMlow.cpp     ****                 output_buffer[i][j] = output_buffer[i][j - 1];
+ 180              		.loc 1 19 36 view .LVU65
+ 181 002a C0ED116A 		vstr.32	s13, [r0, #68]
+  20:BMlow.cpp     ****             }
+ 182              		.loc 1 20 17 is_stmt 1 view .LVU66
+  20:BMlow.cpp     ****             }
+ 183              		.loc 1 20 37 is_stmt 0 view .LVU67
+ 184 002e 80ED177A 		vstr.32	s14, [r0, #92]
+  18:BMlow.cpp     ****                 input_buffer[i][j] = input_buffer[i][j - 1];
+ 185              		.loc 1 18 13 is_stmt 1 view .LVU68
+ 186              	.LVL11:
+  18:BMlow.cpp     ****                 input_buffer[i][j] = input_buffer[i][j - 1];
+ 187              		.loc 1 18 31 view .LVU69
+ 188              	.LBE15:
+  24:BMlow.cpp     **** 
+ 189              		.loc 1 24 13 view .LVU70
+  27:BMlow.cpp     ****             for (int j = 0; j < 2; ++j) {
+ 190              		.loc 1 27 13 view .LVU71
+  28:BMlow.cpp     ****                 temp_output += NUM[i][j] * input_buffer[i][j];
+ 191              		.loc 1 28 13 view .LVU72
+ 192              	.LBB16:
+  28:BMlow.cpp     ****                 temp_output += NUM[i][j] * input_buffer[i][j];
+ 193              		.loc 1 28 31 view .LVU73
+  29:BMlow.cpp     ****                 if (j > 0) {
+ 194              		.loc 1 29 17 view .LVU74
+  30:BMlow.cpp     ****                     temp_output -= DEN[i][j] * output_buffer[i][j];
+ 195              		.loc 1 30 17 view .LVU75
+  28:BMlow.cpp     ****                 temp_output += NUM[i][j] * input_buffer[i][j];
+ 196              		.loc 1 28 13 view .LVU76
+  28:BMlow.cpp     ****                 temp_output += NUM[i][j] * input_buffer[i][j];
+ 197              		.loc 1 28 31 view .LVU77
+  29:BMlow.cpp     ****                 if (j > 0) {
+ 198              		.loc 1 29 17 view .LVU78
+ 199              	.LBE16:
+ 200              	.LBE19:
+  16:BMlow.cpp     ****             // Shift the old values in buffers
+ 201              		.loc 1 16 27 is_stmt 0 view .LVU79
+ 202 0032 8342     		cmp	r3, r0
+ 203              	.LBB20:
+ 204              	.LBB17:
+  29:BMlow.cpp     ****                 if (j > 0) {
+ 205              		.loc 1 29 29 view .LVU80
+ 206 0034 A5EEA60A 		vfma.f32	s0, s11, s13
+ARM GAS  C:\Users\galla\AppData\Local\Temp\ccw1b4Uc.s 			page 6
+
+
+ 207              	.LVL12:
+  30:BMlow.cpp     ****                     temp_output -= DEN[i][j] * output_buffer[i][j];
+ 208              		.loc 1 30 17 is_stmt 1 view .LVU81
+ 209              		.loc 1 31 21 view .LVU82
+ 210              		.loc 1 31 33 is_stmt 0 view .LVU83
+ 211 0038 A6EE470A 		vfms.f32	s0, s12, s14
+ 212              	.LVL13:
+  28:BMlow.cpp     ****                 temp_output += NUM[i][j] * input_buffer[i][j];
+ 213              		.loc 1 28 13 is_stmt 1 view .LVU84
+  28:BMlow.cpp     ****                 temp_output += NUM[i][j] * input_buffer[i][j];
+ 214              		.loc 1 28 31 view .LVU85
+ 215              	.LBE17:
+  32:BMlow.cpp     ****                 }
+  33:BMlow.cpp     ****             }
+  34:BMlow.cpp     **** 
+  35:BMlow.cpp     ****             // Store the new output
+  36:BMlow.cpp     ****             output_buffer[i][0] = temp_output;
+ 216              		.loc 1 36 13 view .LVU86
+ 217              		.loc 1 36 33 is_stmt 0 view .LVU87
+ 218 003c 80ED160A 		vstr.32	s0, [r0, #88]
+  37:BMlow.cpp     ****             output = temp_output;
+ 219              		.loc 1 37 13 is_stmt 1 view .LVU88
+ 220              	.LVL14:
+ 221              		.loc 1 37 13 is_stmt 0 view .LVU89
+ 222              	.LBE20:
+  16:BMlow.cpp     ****             // Shift the old values in buffers
+ 223              		.loc 1 16 9 is_stmt 1 view .LVU90
+  16:BMlow.cpp     ****             // Shift the old values in buffers
+ 224              		.loc 1 16 27 view .LVU91
+ 225 0040 00D1     		bne	.L5
+ 226              	.LBE6:
+  38:BMlow.cpp     ****         }
+  39:BMlow.cpp     **** 
+  40:BMlow.cpp     ****         return output;
+ 227              		.loc 1 40 9 view .LVU92
+  41:BMlow.cpp     **** }...
+ 228              		.loc 1 41 1 is_stmt 0 view .LVU93
+ 229 0042 7047     		bx	lr
+ 230              	.L5:
+ 231              	.LBB22:
+ 232              	.LBB21:
+ 233              	.LBB18:
+  31:BMlow.cpp     ****                     temp_output -= DEN[i][j] * output_buffer[i][j];
+ 234              		.loc 1 31 33 view .LVU94
+ 235 0044 F0EE407A 		vmov.f32	s15, s0
+ 236 0048 DEE7     		b	.L4
+ 237              	.L7:
+ 238 004a 00BF     		.align	2
+ 239              	.L6:
+ 240 004c 00000000 		.word	0
+ 241              	.LBE18:
+ 242              	.LBE21:
+ 243              	.LBE22:
+ 244              		.cfi_endproc
+ 245              	.LFE545:
+ 247              		.text
+ 248              	.Letext0:
+ARM GAS  C:\Users\galla\AppData\Local\Temp\ccw1b4Uc.s 			page 7
+
+
+ 249              		.file 2 "c:\\program files\\daisytoolchain\\arm-none-eabi\\include\\c++\\10.2.1\\cmath"
+ 250              		.file 3 "c:\\program files\\daisytoolchain\\arm-none-eabi\\include\\c++\\10.2.1\\bits\\std_abs.h"
+ 251              		.file 4 "c:\\program files\\daisytoolchain\\arm-none-eabi\\include\\c++\\10.2.1\\arm-none-eabi\\th
+ 252              		.file 5 "c:\\program files\\daisytoolchain\\arm-none-eabi\\include\\math.h"
+ 253              		.file 6 "c:\\program files\\daisytoolchain\\arm-none-eabi\\include\\c++\\10.2.1\\math.h"
+ 254              		.file 7 "BMlow.h"
+ 255              		.file 8 "<built-in>"
+ARM GAS  C:\Users\galla\AppData\Local\Temp\ccw1b4Uc.s 			page 8
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 BMlow.cpp
+C:\Users\galla\AppData\Local\Temp\ccw1b4Uc.s:17     .text._ZN5BMlow4InitEv:00000000 $t
+C:\Users\galla\AppData\Local\Temp\ccw1b4Uc.s:26     .text._ZN5BMlow4InitEv:00000000 _ZN5BMlow4InitEv
+C:\Users\galla\AppData\Local\Temp\ccw1b4Uc.s:115    .text._ZN5BMlow7ProcessEf:00000000 $t
+C:\Users\galla\AppData\Local\Temp\ccw1b4Uc.s:123    .text._ZN5BMlow7ProcessEf:00000000 _ZN5BMlow7ProcessEf
+C:\Users\galla\AppData\Local\Temp\ccw1b4Uc.s:240    .text._ZN5BMlow7ProcessEf:0000004c $d
+
+NO UNDEFINED SYMBOLS
