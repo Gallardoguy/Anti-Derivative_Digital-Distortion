@@ -5,11 +5,11 @@
 
 ## Goal / Problem Statement
 
-There a few main goals I had in mind with this project. The first was improving the severe noise compared to my last pedal. The second was designing and implementing my own digital filters. This means no external signal processing libraries.
+There are a few main goals I had in mind with this project. The first was improving the severe noise compared to my last pedal. The second was designing and implementing my own digital filters. This means no external signal processing libraries.
 The third was to make a pedal that was a master of one rather than a jack of all trades.
 
-This was so I could improve my own understanding of DSP and filter design, but also to practice anti-aliasing techniques to improve noise performance. I also thought this would be a good opportunity to make this a dedicated distortion pedal since the EQ 
-/ tone stack / filtering is basically the only thing that sets two distortion pedals apart. There were other small improvements I also wanted to make such as a way to bypass quantization, anti-aliasing filters on the input and output, and codec input 
+This was so I could improve my own understanding of DSP and filter design, but also to practice anti-aliasing techniques to improve noise performance. I also thought this would be a good opportunity to make this a dedicated distortion pedal since the EQ
+/ tone stack / filtering is basically the only thing that sets two distortion pedals apart. There were other small improvements I also wanted to make such as a way to bypass quantization, anti-aliasing filters on the input and output, and codec input
 voltage protection.
 
 
@@ -41,17 +41,19 @@ from when vintage was modern.
 
 ## My pedal In Detail
 
-I wanted to take a moment before showing the schematic and waveforms to talk about the features of this pedal. This pedal has a 3 way toggle switch to swap between 3 pedals I took inspiration from. The left position is the Ibanez TS-9 Tube Screamer. This 
-is a soft clipping overdrive pedal. The second is the Electro-Harmonix Big Muff Pi. This is an example of Hard Clipping Distortion. The last was a challenge I set for myslelf. It is the Boss HM-2. This is a crazy pedal that chains a gain soft clipping 
-stage, into another gain hard clipping stage. Finally it sends this signal into a wild filtering stage. The challenge with this pedal was creating a frequency response that mimics the original. My pedal features 3 knobs: gain, tone, and volume. Since 
-this is digital, it's easy to change frequency response as well as the distortion. It has relay bypass to avoid quantization when not in use. This also has a bonus of allowing the pedal to act as a wire even when not plugged into power. I added voltage 
-protection to the audio inputs by using the protection of the MCP6004 op amp. It features second order sallen-key input and output filters. I am sampling at 96k. This pedal is based around the Daisy Seed by Electrosmith. It is an audio DSP board 
-featuring an STM32H750 as well as a 24 bit stereo codec (This pedal is mono). There is also an indicator LED when the effect is on. This leads me to the art on the pedal. The LED lights the campfire in the art. The art is not mine, it is promo art for 
-the video game Outer Wilds. I initially wanted to label the knobs, but I still needed art. Once I saw this art and had the LED idea, I abandonded labels for looks. I justify this by arguing I am the only person who will use this so it's ok since I know how it works. 
+I wanted to take a moment before showing the schematic and waveforms to talk about the features of this pedal. This pedal has a 3 way toggle switch to swap between 3 pedals I took inspiration from. The left position is the Ibanez TS-9 Tube Screamer.
+This is a soft clipping overdrive pedal. The second is the Electro-Harmonix Big Muff Pi. This is an example of Hard Clipping Distortion. The last was a challenge I set for myself. It is the Boss HM-2. This is a crazy pedal that chains again soft
+clipping stage, into another gain hard clipping stage. Finally it sends this signal into a wild filtering stage. The challenge with this pedal was creating a frequency response that mimics the original. My pedal features 3 knobs: gain, tone, and volume.
+Since this is digital, it's easy to change frequency response as well as the distortion. It has relay bypass to avoid quantization when not in use. This also has a bonus of allowing the pedal to act as a wire even when not plugged into power. I added
+voltage protection to the audio inputs by using the protection of the MCP6004 op amp. It features second order sallen-key input and output filters. I am sampling at 96k. This pedal is based around the Daisy Seed by Electrosmith. It is an audio DSP board
+featuring an STM32H750 as well as a 24 bit stereo codec (This pedal is mono). There is also an indicator LED when the effect is on. This leads me to the art on the pedal. The LED lights the campfire in the art. The art is not mine, it is promo art for
+the video game Outer Wilds. I initially wanted to label the knobs, but I still needed art. Once I saw this art and had the LED idea, I abandoned labels for looks. I justify this by arguing I am the only person who will use this so it's ok since I know
+how it works.
 
 
 ## My Pedal's Performance
-Here is the Performance of the Overdrive effect of my pedal. This pedal has a highpass filter into an adjustable lowpass. Compared to the real TS-9 I made the tone knob go to 500Hz rather than ~2k since I like the underwater sound a lowpass gives. Input is a 400mV p-p sine wave at 1KHz.
+Here is the Performance of the Overdrive effect of my pedal. This pedal has a highpass filter into an adjustable lowpass. Compared to the real TS-9 I made the tone knob go to 500Hz rather than ~2k since I like the underwater sound a lowpass gives. Input 
+is a 400mV p-p sine wave at 1KHz.
 
 Min mid and max refer to the knob's postion for these tests.
 
@@ -133,11 +135,12 @@ Min tone
 
 ![graph](images/BM_tl_bode.png)
 
-Finally we have the HM-2. unlike the other two pedals which are very popular, this one is quite niche. It saw a lot of success in the Swedish death metal scene in te 90s. This is due to it's unique frequency response that was probably not intended to be used like that. The original pedal is 4 
-knobs, that give you a lot of control over the sound. The pedal was mainly used with everything cranked up to the max to get that famouse sound. My take on this was to give it a similar frequency resposne when the tone knob is cranked all the way. But as you roll it back you get a pure unfiltered 
-distortion. I thought this was a good idea since the other effects I implemented never give you the square wave distotion origianlly was. This was also a comprimise since I only wanted to use three knobs on my pedal to minimize controls clutter.
+Finally we have the HM-2. Unlike the other two pedals which are very popular, this one is quite niche. It saw a lot of success in the Swedish death metal scene in the 90s. This is due to its unique frequency response that was probably not intended to be 
+used like that. The original pedal is 4 knobs, that give you a lot of control over the sound. The pedal was mainly used with everything cranked up to the max to get that famous sound. My take on this was to give it a similar frequency response when the 
+tone knob is cranked all the way. But as you roll it back you get a pure unfiltered distortion. I thought this was a good idea since the other effects I implemented never give you the square wave distortion originally was. This was also a compromise 
+since I only wanted to use three knobs on my pedal to minimize control clutter.
 
-I changed the input frequency to 100hz to better display its EQ since it mainly lives in the 0 to 2kHz area.
+I changed the input frequency to 100Hz to better display its EQ since it mainly lives in the 0 to 2kHz area.
 
 Min gain min tone
 
@@ -189,3 +192,12 @@ Max tone
 ![layout](images/layout.JPG)
 
 ## Conclusion / Final Thoughts
+
+I made a pedal that I'm very proud of. I think it looks amazing, and functions amazingly. Yeah, eye of the beholder, but I have a lot of fun using this pedal. Although I plan on having some people review it for me so I can get feedback. I do plan on 
+selling this pedal eventually. I just need original art, and to actually label the jacks and knobs. There were some issues however. The first is clearance. The regulator and the Seed are a bit too tall. I remedied this by bending the regulator, but I 
+can't do that for the Seed. I was planning on snipping the debugger header after final programming. I also want to put more room between the toggle switch and the pots. I was thinking about moving the switch 5mm down and the knobs 5mm up. I also wanted 
+to move the audio and power jacks over a bit because the PCB gets a little too close to the enclosure for comfort. Tolerance could stop the parts from mating correctly. I also forgot to make front holes a bit bigger to account for the thickness of the 
+gloss. So thats another thing that needs to change. 
+
+As for what comes next, I was showing this project to a faculty member who helped me during my senior project and he asked why I just didn't put the MCU and codec on my boards and do all the hardware myself. And at first I thought no way I could do 
+that. It would be too difficult and take too much time. But then I remembered I'm ambitious and I make things happen when I want them too. I'm the goat fr. So I've been reading datasheets for the last week and begun work on just that. As for the functionality it will be the exact same as this but it will be completely designed by me. This will cut costs significantly as I move to SMT. Although this will be a big loss for repairability. If I ever do get around to selling these I may sell both versions for people that value that like me. I don't even have the tools or know how to do SMT soldering so I will have to have the boards manufactured for me. 
