@@ -171,6 +171,18 @@ Max gain max tone
 
 ![graph](images/HM_gh_th_spec.png)
 
+Min tone
+
+![graph](images/HM_tl_bode.png)
+
+Midin tone
+
+![graph](images/HM_tm_bode.png)
+
+Max tone
+
+![graph](images/HM_th_bode.png)
+
 ## Schematic
 
 ## Conclusion / Final Thoughts
