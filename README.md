@@ -185,4 +185,7 @@ Max tone
 
 ## Schematic
 
+![schematic](images/schematic.JPG)
+![layout](images/layout.JPG)
+
 ## Conclusion / Final Thoughts
