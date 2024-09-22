@@ -47,11 +47,11 @@ stage, into another gain hard clipping stage. Finally it sends this signal into 
 this is digital, it's easy to change frequency response as well as the distortion. It has relay bypass to avoid quantization when not in use. This also has a bonus of allowing the pedal to act as a wire even when not plugged into power. I added voltage 
 protection to the audio inputs by using the protection of the MCP6004 op amp. It features second order sallen-key input and output filters. I am sampling at 96k. This pedal is based around the Daisy Seed by Electrosmith. It is an audio DSP board 
 featuring an STM32H750 as well as a 24 bit stereo codec (This pedal is mono). There is also an indicator LED when the effect is on. This leads me to the art on the pedal. The LED lights the campfire in the art. The art is not mine, it is promo art for 
-the video game Outer Wilds. I initially wanted to label the knobs, but I still needed art. Once I saw this art and had the LED idea, I abandonded labels for looks. I justify this by arguing I am the only person who will use this so it's ok since I know. 
+the video game Outer Wilds. I initially wanted to label the knobs, but I still needed art. Once I saw this art and had the LED idea, I abandonded labels for looks. I justify this by arguing I am the only person who will use this so it's ok since I know how it works. 
 
 
 ## My Pedal's Performance
-Here is the Performance of the Overdrive effect of my pedal. Compared to the real TS-9 I made the tone know go to 500Hz rather than ~2k since I like the underwater sound a lowpass gives. Input is a 400mV p-p sine wave at 1KHz.
+Here is the Performance of the Overdrive effect of my pedal. This pedal has a highpass filter into an adjustable lowpass. Compared to the real TS-9 I made the tone knob go to 500Hz rather than ~2k since I like the underwater sound a lowpass gives. Input is a 400mV p-p sine wave at 1KHz.
 
 Min mid and max refer to the knob's postion for these tests.
 
@@ -133,7 +133,43 @@ Min tone
 
 ![graph](images/BM_tl_bode.png)
 
+Finally we have the HM-2. unlike the other two pedals which are very popular, this one is quite niche. It saw a lot of success in the Swedish death metal scene in te 90s. This is due to it's unique frequency response that was probably not intended to be used like that. The original pedal is 4 
+knobs, that give you a lot of control over the sound. The pedal was mainly used with everything cranked up to the max to get that famouse sound. My take on this was to give it a similar frequency resposne when the tone knob is cranked all the way. But as you roll it back you get a pure unfiltered 
+distortion. I thought this was a good idea since the other effects I implemented never give you the square wave distotion origianlly was. This was also a comprimise since I only wanted to use three knobs on my pedal to minimize controls clutter.
 
+I changed the input frequency to 100hz to better display its EQ since it mainly lives in the 0 to 2kHz area.
+
+Min gain min tone
+
+![graph](images/HM_gl_tl.png)
+
+Max gain min tone
+
+![graph](images/HM_gh_tl.png)
+
+Max gain mid tone
+
+![graph](images/HM_gh_tm.png)
+
+Max gain max tone
+
+![graph](images/HM_gh_th.png)
+
+Min gain min tone
+
+![graph](images/HM_gm_tm_spec.png)
+
+Max gain min tone
+
+![graph](images/HM_gh_tl_spec.png)
+
+Max gain mid tone
+
+![graph](images/HM_gh_tm_spec.png)
+
+Max gain max tone
+
+![graph](images/HM_gh_th_spec.png)
 
 ## Schematic
 
