@@ -46,12 +46,94 @@ is a soft clipping overdrive pedal. The second is the Electro-Harmonix Big Muff 
 stage, into another gain hard clipping stage. Finally it sends this signal into a wild filtering stage. The challenge with this pedal was creating a frequency response that mimics the original. My pedal features 3 knobs: gain, tone, and volume. Since 
 this is digital, it's easy to change frequency response as well as the distortion. It has relay bypass to avoid quantization when not in use. This also has a bonus of allowing the pedal to act as a wire even when not plugged into power. I added voltage 
 protection to the audio inputs by using the protection of the MCP6004 op amp. It features second order sallen-key input and output filters. I am sampling at 96k. This pedal is based around the Daisy Seed by Electrosmith. It is an audio DSP board 
-featuring an STM32H750 as well as a 24 bit stereo codec (This pedal is mono). There is also an indicator LED when the effect is on. This leads me to the art on the pedal. The LED lights the campsire in the art. The art is not mine, it is promo art for 
+featuring an STM32H750 as well as a 24 bit stereo codec (This pedal is mono). There is also an indicator LED when the effect is on. This leads me to the art on the pedal. The LED lights the campfire in the art. The art is not mine, it is promo art for 
 the video game Outer Wilds. I initially wanted to label the knobs, but I still needed art. Once I saw this art and had the LED idea, I abandonded labels for looks. I justify this by arguing I am the only person who will use this so it's ok since I know. 
 
 
 ## My Pedal's Performance
-Here is the Performance of the Overdrive effect of my pedal. Input is a 400mV p-p sine wave at 1KHz. 
+Here is the Performance of the Overdrive effect of my pedal. Compared to the real TS-9 I made the tone know go to 500Hz rather than ~2k since I like the underwater sound a lowpass gives. Input is a 400mV p-p sine wave at 1KHz.
+
+Min mid and max refer to the knob's postion for these tests.
+
+Min gain max tone
+
+![graph](images/TS_gl_th.png)
+
+Max gain max tone
+
+![graph](images/TS_gh_th.png)
+
+Max gain min tone
+
+![graph](images/TS_gh_tl.png)
+
+Min gain max tone
+
+![graph](images/TS_gl_th_spec.png)
+
+Max gain max tone
+
+![graph](images/TS_gh_th_spec.png)
+
+Max gain min tone
+
+![graph](images/TS_gh_tl_spec.png)
+
+Max tone
+
+![graph](images/TS_th_bode.png)
+
+Mid tone
+
+![graph](images/TS_tm_bode.png)
+
+Min tone
+
+![graph](images/TS_tl_bode.png)
+
+Next is the Big Muff. This pedal has an output lowpass and highpass that are mixed together using a pot. I did the same, but boosted the high end since it's quieter.
+
+Min gain mid tone
+
+![graph](images/BM_gl_tm.png)
+
+Max gain mid tone
+
+![graph](images/BM_gh_tm.png)
+
+Max gain max tone
+
+![graph](images/BM_gm_th.png)
+
+Max gain min tone
+
+![graph](images/BM_gh_tl.png)
+
+Max gain mid tone
+
+![graph](images/BM_gh_tm_spec.png)
+
+Max gain max tone
+
+![graph](images/BM_gm_th_spec.png)
+
+Max gain min tone
+
+![graph](images/BM_gh_tl_spec.png)
+
+Mid tone
+
+![graph](images/BM_tm_bode.png)
+
+Max tone
+
+![graph](images/BM_th_bode.png)
+
+Min tone
+
+![graph](images/BM_tl_bode.png)
+
+
 
 ## Schematic
 
