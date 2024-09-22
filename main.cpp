@@ -5,12 +5,10 @@
 #include "BMhigh.h"
 #include "DistHP.h"
 #include "TSTone.h"
-#include "DistHPHM.h"
 #include "PeakEQ.h"
 
 
 using namespace daisy;
-using namespace daisysp;
 
 DaisySeed  hw;
 
@@ -19,9 +17,8 @@ BMlow bmLow;
 BMhigh bmHigh;
 
 TSTone tstone;
-DistHP tsHP, HP1, HP2, HP3, HP4;
+DistHP tsHP;
 
-DistHPHM hmHP;
 PeakEQ stage1, stage2, stage3, stage4, stage5;
 
 bool on;
@@ -58,43 +55,61 @@ float ts(float in) {
 float bm3AD(float x) {
     float out;
     float stage1;
-    // if (x >= 0.4) {
-    //     stage1 = 0.666667*x*x*x;
-    // } else if(x<= -0.4) {
-    //     stage1 = -1*0.666667*x*x*x;
-    // } else {
-    //     stage1 = 0.041666*x*x*x*x;
-    // }
 
-    if (x >= 0.17) {
-        stage1 = 0.000002833*x*x*x;
-    } else if(x<= -0.17) {
-        stage1 = -1*0.000002833*x*x*x;
+    if (x >= 0.4) {
+        stage1 = 0.666667*x*x*x;
+    } else if(x<= -0.4) {
+        stage1 = -1*0.666667*x*x*x;
     } else {
         stage1 = 0.041666*x*x*x*x;
     }
 
     stage1 *= 40;
 
-    // if (stage1 >= 0.4) {
-    //     out = 0.666667*stage1*stage1*stage1;
-    // } else if(x<= -0.4) {
-    //     out = -1*0.666667*stage1*stage1*stage1; // slilcon diode hard clipping / faithful to original schematic
-    // } else {
-    //     out = 0.041666*stage1*stage1*stage1*stage1;
-    // }
-
-    if (x >= 0.17) {
-        out = 0.000002833*x*x*x;
-    } else if(x<= -0.17) {
-        out = -1*0.000002833*x*x*x; // germanium hard clipping approximation / test later
+    if (stage1 >= 0.4) {
+        out = 0.666667*stage1*stage1*stage1;
+    } else if(stage1 <= -0.4) {
+        out = -1*0.666667*stage1*stage1*stage1; // slilcon diode hard clipping
     } else {
-        out = 0.041666*x*x*x*x;
+        out = 0.041666*stage1*stage1*stage1*stage1;
     }
     return out;
 }
 
 float bm(float in) {
+    if (in > 0.4) {
+        return 0.4;
+    } else if (in < -0.4) {
+        return -0.4;
+    } else {
+        return in;
+    }
+}
+
+float HM3AD(float in) {
+    float out;
+    float stage1;
+
+    float absx = abs(in);
+    float xx = in*in;
+
+    float num = 6*(2*absx + xx + 1)*log(absx+1) - 2*(xx + 3)*absx - 9*xx;
+
+    stage1 = -1*num/12;
+
+    stage1 *= 40;
+
+    if (stage1 >= 0.17) {
+        out = 0.000002833*stage1*stage1*stage1;
+    } else if(stage1 <= -0.17) {
+        out = -1*0.000002833*stage1*stage1*stage1; // germanium diode hard clipping approximation
+    } else {
+        out = 0.041666*stage1*stage1*stage1*stage1;
+    }
+    return out;
+}
+
+float hm(float in) {
     if (in > 0.17) {
         return 0.17;
     } else if (in < -0.17) {
@@ -103,8 +118,6 @@ float bm(float in) {
         return in;
     }
 }
-
-
 
 float dist3ADAA(float in) {
     float out = 0;
@@ -136,7 +149,7 @@ float dist3ADAA(float in) {
         f1 = ts3AD(x1);
         f2 = ts3AD(x2);
         f3 = ts3AD(x3);
-    } else {
+    } else if(effect == 1) {
 
         if(x_x1 < sigma){
             return bm( (x + x1) / 2);
@@ -154,6 +167,23 @@ float dist3ADAA(float in) {
         f1 = bm3AD(x1);
         f2 = bm3AD(x2);
         f3 = bm3AD(x3);
+    } else {
+        if(x_x1 < sigma){
+            return hm( (x + x1) / 2);
+        } else if(x1_x2 < sigma) {
+            return hm( (x1 + x2) / 2);
+        } else if(x2_x3 < sigma) {
+            return hm( (x2 + x3) / 2);
+        } else if(x1_x3 < sigma) {
+            return hm( (x1 + x3) / 2);
+        } else if(x_x2 < sigma) {
+            return hm( (x + x2) / 2);
+        }
+
+        f0 = HM3AD(x);
+        f1 = HM3AD(x1);
+        f2 = HM3AD(x2);
+        f3 = HM3AD(x3);
     }
     
     out = 1/x1_x2 * ( 2/x_x2*((f0-f1)/(x_x1) - (f1-f2)/(x1_x2)) - 2/x1_x3*((f1-f2)/(x1_x2) - (f2-f3)/(x2_x3)));
@@ -175,14 +205,14 @@ void AudioCallback(AudioHandle::InputBuffer in, AudioHandle::OutputBuffer out, s
 
     tstone.setFreq(500 + knob2*3500);
 
-    stage2.setGain(8*knob2);
-    stage3.setGain(-8*knob2);
+    stage2.setGain(16*knob2);
+    stage3.setGain(-16*knob2);
     stage4.setGain(4*knob2);
     stage5.setGain(4*knob2);
     float gain;
     if(effect == 0) {
         for (size_t i = 0; i < size; i++) {
-            gain = 20 + knob1*140;
+            gain = 1 + knob1*159;
             float dist = dist3ADAA(IN_L[i]*gain);
             OUT_L[i] = knob3*tstone.Process(tsHP.Process(dist));
         }
@@ -198,14 +228,14 @@ void AudioCallback(AudioHandle::InputBuffer in, AudioHandle::OutputBuffer out, s
 
     } else if(effect == 2) {
         for (size_t i = 0; i < size; i++) {
-            gain = 0.2+knob1*0.8;
-            float dist = dist3ADAA(IN_L[i]*60*gain);
+            gain = 20 + knob1*140;
+            float dist = dist3ADAA(IN_L[i]*knob1);
             float s1 = stage1.Process(dist);
             float s2 = stage2.Process(s1);
             float s3 = stage3.Process(s2);
             float s4 = stage4.Process(s3);
             float s5 = stage5.Process(s4);
-            OUT_L[i] = knob3*hmHP.Process(s5);
+            OUT_L[i] = knob3*s5;
         }
     }
 
@@ -234,36 +264,30 @@ int main(void) {
     bmHigh.Init();
     bmLow.Init();
 
-    hmHP.Init();
-
     stage1.Init();
-    stage1.setParams(20, 300, 0.5);//0.707
-    stage1.setGain(-15);
+    stage1.setParams(20, 300, 0.707);//0.707
+    stage1.setGain(-7);
 
     stage2.Init();
-    stage2.setParams(72, 300, 0.5);//1.707
+    stage2.setParams(72, 300, 1.293);//1.707
 
     stage3.Init();
-    stage3.setParams(220, 300, 0.5);//1
+    stage3.setParams(220, 300, 0.707);//1
 
     stage4.Init();
-    stage4.setParams(1000, 300, 0.5);//1.707
+    stage4.setParams(1000, 300, 1.707);//1.707
 
     stage5.Init();
-    stage5.setParams(1500, 300, 0.5);//1.707
+    stage5.setParams(1500, 300, 1.707);//1.707
 
     tstone.Init();
     tsHP.Init();
-    HP1.Init();
-    HP2.Init();
-    HP3.Init();
-    HP4.Init();
 
-    Switch button1;
-    button1.Init(seed::D0, 1000);
+    Switch momentary;
+    momentary.Init(seed::D0, 1000);
 
-    // Switch latching;
-    // latching.Init(Seed::D0); // FOR LATCHING SWITCHES
+    Switch latching;
+    latching.Init(seed::D1); // FOR LATCHING SWITCHES
 
     Switch3 toggle;
     toggle.Init(seed::D7, seed::D8);
@@ -291,12 +315,13 @@ int main(void) {
     while(1) {
 
         
-        button1.Debounce();
-        if(button1.RisingEdge()){
+        momentary.Debounce();
+        if(momentary.RisingEdge()){ //momentary switch
             on = !on;
         }
-        // latching.Debounce();    
-        // on = latching.Pressed(); //FOR LATCHING SWITCH
+
+        latching.Debounce();    
+        on = latching.Pressed(); //latching switch
 
         if(on) {
             sw.Write(false);

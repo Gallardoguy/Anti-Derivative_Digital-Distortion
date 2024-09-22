@@ -2,7 +2,7 @@
 TARGET = main
 
 # Sources
-CPP_SOURCES = main.cpp DistBP.cpp BMhigh.cpp BMlow.cpp TSTone.cpp DistHP.cpp DistHPHM.cpp PeakEQ.cpp
+CPP_SOURCES = main.cpp DistBP.cpp BMhigh.cpp BMlow.cpp TSTone.cpp DistHP.cpp PeakEQ.cpp
 
 # Library Locations
 LIBDAISY_DIR = ../../libDaisy

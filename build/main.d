@@ -196,7 +196,7 @@ build/main.o: main.cpp \
  ../../DaisySP/Source/Utility/metro.h \
  ../../DaisySP/Source/Utility/samplehold.h \
  ../../DaisySP/Source/Utility/smooth_random.h DistBP.h BMlow.h BMhigh.h \
- DistHP.h TSTone.h DistHPHM.h PeakEQ.h
+ DistHP.h TSTone.h PeakEQ.h
 ../../libDaisy/Drivers/CMSIS/Device/ST/STM32H7xx/Include/stm32h7xx.h:
 ../../libDaisy/Drivers/CMSIS/Device/ST/STM32H7xx/Include/stm32h750xx.h:
 ../../libDaisy/Drivers/CMSIS/Include/core_cm7.h:
@@ -438,5 +438,4 @@ BMlow.h:
 BMhigh.h:
 DistHP.h:
 TSTone.h:
-DistHPHM.h:
 PeakEQ.h:

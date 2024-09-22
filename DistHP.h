@@ -5,31 +5,6 @@
 
 class DistHP {
 private:
-    // static const int MWSPT_NSEC = 3;
-    // const int NL[MWSPT_NSEC] = { 1,3,1 };
-    // const float NUM[MWSPT_NSEC][3] = {
-    // {
-    //     0.03628773987,              0,              0 
-    // },
-    // {
-    //                 1,              0,             -1 
-    // },
-    // {
-    //                 1,              0,              0 
-    // }
-    // };
-    // const int DL[MWSPT_NSEC] = { 1,3,1 };
-    // const float DEN[MWSPT_NSEC][3] = {
-    // {
-    //                 1,              0,              0 
-    // },
-    // {
-    //                 1,    -1.91554606,   0.9274244905 
-    // },
-    // {
-    //                 1,              0,              0 
-    // }
-    // };
     static const int MWSPT_NSEC = 3;
     const int NL[MWSPT_NSEC] = { 1,2,1 };
     const float NUM[MWSPT_NSEC][2] = {

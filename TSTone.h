@@ -5,17 +5,13 @@
 
 class TSTone {
 private:
-    // float wc, T, wd;
-    // float b0, b1, a1;
-    // float prevX, prevY;
-    // float fc;
 
     float wc, T, wd;
     float A, b0, b1, b2, a1, a2;
     float fc, x1, x2, y1, y2;
 
 public:
-    TSTone() = default;                   // Constructor
+    TSTone() = default;
     ~TSTone() = default;
 
     void Init();

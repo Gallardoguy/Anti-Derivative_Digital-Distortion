@@ -25,10 +25,6 @@ void TSTone::setFreq(float freq) {
     float wd2 = wd * wd;
     float T2 = 2/T;
 
-    // b0 = wd / (wd + (2 / T));
-    // b1 = b0;
-    // a1 = (wd - (2 / T)) / (wd + (2 / T));
-
     A = wd2 + sqrt(2) * wd * T2 + (T2 * T2);
     b0 = wd2 / A;
     b1 = 2*b0;
