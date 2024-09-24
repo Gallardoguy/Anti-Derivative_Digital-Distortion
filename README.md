@@ -42,13 +42,27 @@ from when vintage was modern.
 ## My pedal In Detail
 
 I wanted to take a moment before showing the schematic and waveforms to talk about the features of this pedal. This pedal has a 3 way toggle switch to swap between 3 pedals I took inspiration from. The left position is the Ibanez TS-9 Tube Screamer.
-This is a soft clipping overdrive pedal. The second is the Electro-Harmonix Big Muff Pi. This is an example of Hard Clipping Distortion. The last was a challenge I set for myself. It is the Boss HM-2. This is a crazy pedal that chains again soft
+This is a soft clipping overdrive pedal. The second is the Electro-Harmonix Big Muff Pi. This is an example of Hard Clipping Distortion. The last was a challenge I set for myself. It is the Boss HM-2. This is a crazy pedal that chains a gain soft
 clipping stage, into another gain hard clipping stage. Finally it sends this signal into a wild filtering stage. The challenge with this pedal was creating a frequency response that mimics the original. My pedal features 3 knobs: gain, tone, and volume.
 Since this is digital, it's easy to change frequency response as well as the distortion. It has relay bypass to avoid quantization when not in use. This also has a bonus of allowing the pedal to act as a wire even when not plugged into power. I added
 voltage protection to the audio inputs by using the protection of the MCP6004 op amp. It features second order sallen-key input and output filters. I am sampling at 96k. This pedal is based around the Daisy Seed by Electrosmith. It is an audio DSP board
 featuring an STM32H750 as well as a 24 bit stereo codec (This pedal is mono). There is also an indicator LED when the effect is on. This leads me to the art on the pedal. The LED lights the campfire in the art. The art is not mine, it is promo art for
 the video game Outer Wilds. I initially wanted to label the knobs, but I still needed art. Once I saw this art and had the LED idea, I abandoned labels for looks. I justify this by arguing I am the only person who will use this so it's ok since I know
-how it works.
+how it works. 
+
+The enclosure was ordered, drilled, and UV printed at Tayda Electronics. 
+The PCB is a 4 layer board with a signal / gnd / gnd / signal stackup. I designed it in KiCAD and had manufactured by JLCPCB. I made sure to follow best practices such as proper grounding, filter capcitors on power pins, and trace spacing.
+The rest of the components came from Mouser. 
+
+It's powered from a center negative 9v dc barrel plug. The pedal uses about 150-200 mA. Compared to analog distorion pedals which use about 10-20mA, mine is much higher. To be fair, the indicator LED in the analog pedals is the main culprit.
+The op amps basically use nothing.
+
+The footswitch used currently is momentary SPST. But there are actually two connectors on the board. There is actually support for latching switches. If you want a clicky latching switch, just plug it to the other connector.
+Currently I have to reprogram it to detect a latching switch, in the next iteration I will have it connect to another GPIO pin so that only one program is needed to support both types.
+
+I debated putting the relay into a DIP socket, but unfortunatle the legs are too short for me to be confident it won't fall out with someone stomping on the box.
+
+I used a negative terminal battery spring so I could ground the enclosure for shielding. 
 
 
 ## My Pedal's Performance
@@ -195,7 +209,7 @@ Max tone
 
 I made a pedal that I'm very proud of. I think it looks amazing, and functions amazingly. Yeah, eye of the beholder, but I have a lot of fun using this pedal. Although I plan on having some people review it for me so I can get feedback. I do plan on 
 selling this pedal eventually. I just need original art, and to actually label the jacks and knobs. There were some issues however. The first is clearance. The regulator and the Seed are a bit too tall. I remedied this by bending the regulator, but I 
-can't do that for the Seed. I was planning on snipping the debugger header after final programming. I also want to put more room between the toggle switch and the pots. I was thinking about moving the switch 5mm down and the knobs 5mm up. I also wanted 
+can't do that for the Seed. I was planning on snipping the debugger header after final programming. I also want to put more room between the toggle  and the pots. I was thinking about moving the  5mm down and the knobs 5mm up. I also wanted 
 to move the audio and power jacks over a bit because the PCB gets a little too close to the enclosure for comfort. Tolerance could stop the parts from mating correctly. I also forgot to make front holes a bit bigger to account for the thickness of the 
 gloss. So thats another thing that needs to change. 
 
