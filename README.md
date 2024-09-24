@@ -57,12 +57,12 @@ The rest of the components came from Mouser.
 It's powered from a center negative 9v dc barrel plug. The pedal uses about 150-200 mA. Compared to analog distorion pedals which use about 10-20mA, mine is much higher. To be fair, the indicator LED in the analog pedals is the main culprit.
 The op amps basically use nothing.
 
-The footswitch used currently is momentary SPST. But there are actually two connectors on the board. There is actually support for latching switches. If you want a clicky latching switch, just plug it to the other connector.
-Currently I have to reprogram it to detect a latching switch, in the next iteration I will have it connect to another GPIO pin so that only one program is needed to support both types.
+The footswitch used currently is momentary SPST. But there are actually two connectors on the board. This is actually support for latching switches. If you want a clicky latching switch, just plug it to the other connector.
+Currently I have to reprogram it to detect a latching switch, in the next iteration I will have it connect to another GPIO pin so that only one program is needed to support both types. I used a molex microlatch for momentary and JST for latching
 
 I debated putting the relay into a DIP socket, but unfortunatle the legs are too short for me to be confident it won't fall out with someone stomping on the box.
 
-I used a negative terminal battery spring so I could ground the enclosure for shielding. 
+I used a negative terminal battery spring so I could ground the enclosure for shielding. They are pretty cheap so I think it's a pretty good solution. 
 
 
 ## My Pedal's Performance
