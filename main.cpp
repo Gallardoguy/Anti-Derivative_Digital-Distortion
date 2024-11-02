@@ -1,12 +1,10 @@
 #include "daisy_seed.h"
-#include "daisysp.h"
 #include "DistBP.h"
 #include "BMlow.h"
 #include "BMhigh.h"
 #include "DistHP.h"
 #include "TSTone.h"
 #include "PeakEQ.h"
-
 
 using namespace daisy;
 
@@ -25,6 +23,9 @@ bool on;
 int effect;
 
 float knob1, knob2, knob3;
+
+// CONTEXT FOR THE FUNCTIONS AND MATH BELOW ARE IN THIS PAPER
+// https://acris.aalto.fi/ws/portalfiles/portal/27135145/ELEC_bilbao_et_al_antiderivative_antialiasing_IEEESPL.pdf
 
 
 float x1 = 0;
@@ -119,10 +120,9 @@ float hm(float in) {
     }
 }
 
-float dist3ADAA(float in) {
+float dist3ADAA(float x) {
     float out = 0;
     float sigma = 0.00001;
-    float x = in;
 
     float x_x1 = x-x1;
     float x1_x2 = x1-x2;
@@ -202,18 +202,13 @@ void AudioCallback(AudioHandle::InputBuffer in, AudioHandle::OutputBuffer out, s
     knob2 = hw.adc.GetFloat(1);
     knob3 = hw.adc.GetFloat(2);
 
-
-    tstone.setFreq(500 + knob2*3500);
-
-    stage2.setGain(16*knob2);
-    stage3.setGain(-16*knob2);
-    stage4.setGain(4*knob2);
-    stage5.setGain(4*knob2);
     float gain;
+
     if(effect == 0) {
         for (size_t i = 0; i < size; i++) {
             gain = 1 + knob1*159;
             float dist = dist3ADAA(IN_L[i]*gain);
+            tstone.setFreq(500 + knob2*3500);
             OUT_L[i] = knob3*tstone.Process(tsHP.Process(dist));
         }
     } else if(effect == 1) {
@@ -228,6 +223,13 @@ void AudioCallback(AudioHandle::InputBuffer in, AudioHandle::OutputBuffer out, s
 
     } else if(effect == 2) {
         for (size_t i = 0; i < size; i++) {
+
+            stage1.setGain(-7*knob2);
+            stage2.setGain(16*knob2);
+            stage3.setGain(-16*knob2);
+            stage4.setGain(4*knob2);
+            stage5.setGain(4*knob2);
+
             gain = 20 + knob1*140;
             float dist = dist3ADAA(IN_L[i]*knob1);
             float s1 = stage1.Process(dist);
@@ -265,29 +267,28 @@ int main(void) {
     bmLow.Init();
 
     stage1.Init();
-    stage1.setParams(20, 300, 0.707);//0.707
-    stage1.setGain(-7);
+    stage1.setParams(20, 300, 0.707);//fc, bw, Q
 
     stage2.Init();
-    stage2.setParams(72, 300, 1.293);//1.707
+    stage2.setParams(72, 300, 1.3);
 
     stage3.Init();
-    stage3.setParams(220, 300, 0.707);//1
+    stage3.setParams(220, 300, 0.707);
 
     stage4.Init();
-    stage4.setParams(1000, 300, 1.707);//1.707
+    stage4.setParams(1000, 300, 1.707);
 
     stage5.Init();
-    stage5.setParams(1500, 300, 1.707);//1.707
+    stage5.setParams(1500, 300, 1.707);
 
     tstone.Init();
     tsHP.Init();
 
     Switch momentary;
-    momentary.Init(seed::D0, 1000);
+    momentary.Init(seed::D0, 1000); //cmomentary switch pin
 
     Switch latching;
-    latching.Init(seed::D1); // FOR LATCHING SWITCHES
+    latching.Init(seed::D1); // latching swith pin
 
     Switch3 toggle;
     toggle.Init(seed::D7, seed::D8);
@@ -311,10 +312,8 @@ int main(void) {
     hw.StartAudio(AudioCallback);
 
     
-    
     while(1) {
 
-        
         momentary.Debounce();
         if(momentary.RisingEdge()){ //momentary switch
             on = !on;
